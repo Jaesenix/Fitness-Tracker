@@ -1,8 +1,9 @@
-const router = require("express").Router();
+const express = require("express");
+const app = express();
 const Workout = require("../workoutModel.js");
 
 // API Routes
-router.get("/api/workouts", (req, res) => {
+app.get("/api/workouts", (req, res) => {
     Workout.find()
         .then(dbWorkout => {
             res.json(dbWorkout);
@@ -14,7 +15,7 @@ router.get("/api/workouts", (req, res) => {
         });
 });
 
-router.get("/api/workouts/range", (req, res) => {
+app.get("/api/workouts/range", (req, res) => {
     Workout.find({}).limit(7)
         .then(dbWorkout => {
             res.json(dbWorkout);
@@ -24,30 +25,45 @@ router.get("/api/workouts/range", (req, res) => {
         });
 });
 
-router.put("/api/workouts/:id", (req, res) => {
-    let urlData = req.params;
-    let data = req.body;
-    Workout.updateOne({ _id: urlData.id }, {
-        $push: {
-            exercises: [{
-                "type": data.type,
-                "name": data.name,
-                "duration": data.duration,
-                "distance": data.distance,
-                "weight": data.weight,
-                "reps": data.reps,
-                "sets": data.sets
-            }]
-        }
-    }).then(dbUpdate => {
-        res.json(dbUpdate);
-    })
-        .catch(err => {
-            res.json(err);
-        });
+app.put("/api/workouts/:id", (req, res) => {
+    const data = req.body;
+    if (data.type === "cardio") {
+        Workout.updateOne({ _id: req.params.id }, {
+            $push: {
+                exercises: [{
+                    type: data.type,
+                    name: data.name,
+                    duration: data.duration,
+                    distance: data.distance
+                }]
+            }
+        }).then(dbUpdate => {
+            res.json(dbUpdate);
+        })
+            .catch(err => {
+                res.json(err);
+            })
+    } else {
+        Workout.updateOne({ _id: req.params.id },
+            {
+                exercises: [{
+                    type: data.type,
+                    name: data.name,
+                    duration: data.duration,
+                    weight: data.weight,
+                    reps: data.reps,
+                    sets: data.sets
+                }]
+            }).then(dbUpdate => {
+                res.json(dbUpdate);
+            })
+                .catch(err => {
+                console.log(err)
+            });
+    }
 });
 
-router.post("/api/workouts", (req, res) => {
+app.post("/api/workouts", (req, res) => {
     let data = req.body;
     Workout.create({
         day: new Date().setDate(new Date().getDate())
@@ -59,5 +75,5 @@ router.post("/api/workouts", (req, res) => {
         });
 });
 
-module.exports = router;
+module.exports = app;
 
