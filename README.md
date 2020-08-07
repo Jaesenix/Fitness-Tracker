@@ -21,5 +21,22 @@ User can view multiple combined weight of multiiple exercises on the stats page
 As a user, I want to be able to view create and track daily workouts. I want to be able to log multiple exercises in a workout on a given day. I should also be able to track the name, type, weight, sets, reps, and duration of exercise. If the exercise is a cardio exercise, I should be able to track my distance traveled.
 
 Installation
+1. Click on New Workout
+2. Select exercise type: Resistance or Cardio
+3. Enter exercise information
+    a. Resistance: Exercise name, weight, sets, reps, duration
+    b. Cardio: Exercise name, distance, duration
+4. Click Add Exercise then Complete
+5. Your last workout details will appear in the summary
+6. To view your fitness tracker dashboard, click on the top left of the page where it says "Fitness Tracker Dashboard."
+
+## Add Your Exercise
+![Add Your Exercise](./public/images/Addyourexercise.png)
+
+## Last Workout Summary
+![Last Workout Summary](./public/images/Lastworkout.png)
+
+## Workout Dashboard
+![Workout Dashboard](./public/images/Workoutdashboard.png)
 
 
