@@ -44,8 +44,8 @@ app.put("/api/workouts/:id", (req, res) => {
                 res.json(err);
             })
     } else {
-        Workout.updateOne({ _id: req.params.id },
-            {
+        Workout.updateOne({ _id: req.params.id }, {
+            $push: {
                 exercises: [{
                     type: data.type,
                     name: data.name,
@@ -54,10 +54,11 @@ app.put("/api/workouts/:id", (req, res) => {
                     reps: data.reps,
                     sets: data.sets
                 }]
-            }).then(dbUpdate => {
-                res.json(dbUpdate);
-            })
-                .catch(err => {
+            }
+        }).then(dbUpdate => {
+            res.json(dbUpdate);
+        })
+            .catch(err => {
                 console.log(err)
             });
     }
