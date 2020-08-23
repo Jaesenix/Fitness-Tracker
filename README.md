@@ -1,7 +1,5 @@
 ## Fitness-Tracker
 
-[Fitness Tracker](https://my-fitnesstracker.herokuapp.com/?id=5f2d92ff7e52d50017b064f1)
-
 ## Description
 This fitness tracker is designed for the user to be able to view and record various data relating to exercising.  The data to be tracked consists of the type of workout whether it be cardio or exercises with sets and repetitions.
 
@@ -31,6 +29,10 @@ Installation
 4. Click Add Exercise then Complete
 5. Your last workout details will appear in the summary
 6. To view your fitness tracker dashboard, click on the top left of the page where it says "Fitness Tracker Dashboard."
+
+## Deployed Application
+
+[Fitness Tracker](https://my-fitnesstracker.herokuapp.com/?id=5f2d92ff7e52d50017b064f1)
 
 ## Add Your Exercise
 ![Add Your Exercise](./public/images/Addyourexercise.png)
